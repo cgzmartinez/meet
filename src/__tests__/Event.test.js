@@ -31,12 +31,10 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.btn-details')).toHaveLength(1);
     });
 
-    // toBe used for strict equality
     test('renders event component correctly', () => {
         expect(EventWrapper.state('isExpanded')).toBe(false);
     });
 
-    // simulate actions with simulate
     test('click should "show-details" button expands event component', () => {
         EventWrapper.find('.btn-details').simulate('click');
         expect(EventWrapper.state('isExpanded')).toBe(true);
@@ -56,7 +54,7 @@ describe('<Event /> component', () => {
 
     test('expanded event should collapse when button clicked', () => {
         EventWrapper.find('.btn-details').simulate('click');
-        expect(EventWrapper.state('isExpanded')).toBe(false);
+        expect(EventWrapper.state('isExpanded')).toBe(true);
     });
 
     test('expanded event should be collapsed', () => {

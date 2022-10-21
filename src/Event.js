@@ -2,46 +2,47 @@ import React, { Component } from "react";
 
 class Event extends Component {
   state = {
-    isExpanded: false,
+    collapsed: true
   };
 
-  // show/hide event on click
-  handleExpandEvent = () => {
-    if (this.state.isExpanded === false) {
-      this.setState({
-        isExpanded: true,
-      });
-    } else {
-      this.setState({
-        isExpanded: false,
-      });
-    }
+  handleClick = () => {
+    this.setState({ collapsed: !this.state.collapsed })
   };
 
-  renderExpandedComponent = () => {
-    if (this.state.isExpanded) {
-      return (
-        <div className='Expanded-Event'>
-          <h3 className='about'></h3>
-          <a className='link'></a>
-          <p className='description'></p>
-        </div>
-      );
-    }
+  toggleBtnText = () => {
+    return `${this.state.collapsed
+      ? 'Show Details'
+      : 'Hide Details'
+      }`;
   };
+
+  renderButtonText = () => {
+    return !this.state.isExpanded ? "Show details" : "Hide details";
+  };
+
   render() {
+    const { event } = this.props;
+
     return (
-      <div className='Event'>
-        <h2 className='summary'></h2>
-        <div className='dateTime'></div>
-        <div className='timeZone'></div>
-        <div className='location'></div>
+      <div className='event'>
+        <h2 className='summary'>{event.summary}</h2>
+        <div className='dateTime'>{event.start.dateTime}</div>
+        <br></br>
+        <div className='location'>@ {event.summary} | {event.location}</div>
         <button
-          type='button'
-          className='btn-details'
-          onClick={this.handleExpandEvent}
-        ></button>
-        {this.renderExpandedComponent()}
+          className="btn-text"
+          onClick={this.handleClick}>
+          {this.toggleBtnText()}
+        </button>
+        {!this.state.collapsed && (
+          <p className="description">
+            <h3>{event.description}</h3>
+            <p>
+              <a className="link" target="_blank" href="{event.htmlLink}"> Add to Calendar</a>
+            </p>
+          </p>
+
+        )}
       </div>
     );
   }
