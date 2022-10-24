@@ -41,7 +41,9 @@ describe('<App /> integration', () => {
     const AppWrapper = mount(<App />);
     const AppLocationsState = AppWrapper.state('locations');
     expect(AppLocationsState).not.toEqual(undefined);
-    expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
+    expect(AppWrapper.find(CitySearch).props().locations).toEqual(
+      AppLocationsState
+    );
     AppWrapper.unmount();
   });
 
@@ -68,6 +70,8 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+
+  // Integration tests for NumberOfEvents component
 
   test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
     const AppWrapper = mount(<App />);
@@ -112,5 +116,4 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual([mockData[0]]);
     AppWrapper.unmount();
   });
-
 });
