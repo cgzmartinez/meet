@@ -30,12 +30,12 @@ class Event extends Component {
         <br></br>
         <div className='location'>@ {event.summary} | {event.location}</div>
         <button
-          className="btn-text"
+          className="btn-toggle"
           onClick={this.handleClick}>
           {this.toggleBtnText()}
         </button>
         {!this.state.collapsed && (
-          <p className="description">
+          <p className="event-details">
             <h3>{event.description}</h3>
             <p>
               <a className="link" target="_blank" href="{event.htmlLink}"> Add to Calendar</a>
