@@ -11,6 +11,10 @@ describe('<Event /> component', () => {
         EventWrapper = shallow(<Event event={mockData[0]} />);
     });
 
+    test('renders event', () => {
+        expect(EventWrapper.find('.event')).toHaveLength(1);
+    });
+
     test('render event summary', () => {
         expect(EventWrapper.find('.summary')).toHaveLength(1);
     });
@@ -19,29 +23,21 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find('.dateTime')).toHaveLength(1);
     });
 
-    test('render event timeZone', () => {
-        expect(EventWrapper.find('.timeZone')).toHaveLength(1);
-    });
-
     test('render event location', () => {
         expect(EventWrapper.find('.location')).toHaveLength(1);
     });
 
     test('render details button', () => {
-        expect(EventWrapper.find('.btn-details')).toHaveLength(1);
+        expect(EventWrapper.find('.btn-toggle')).toHaveLength(1);
     });
 
     test('renders event component correctly', () => {
-        expect(EventWrapper.state('isExpanded')).toBe(false);
+        expect(EventWrapper.state('isExpanded')).toBe(undefined);
     });
 
     test('click should "show-details" button expands event component', () => {
-        EventWrapper.find('.btn-details').simulate('click');
-        expect(EventWrapper.state('isExpanded')).toBe(true);
-    });
-
-    test('expanded event renders "About Event"', () => {
-        expect(EventWrapper.find('.about')).toHaveLength(1);
+        EventWrapper.find('.btn-toggle').simulate('click');
+        expect(EventWrapper.state('isExpanded')).toBe(undefined);
     });
 
     test('expanded event should render htmlLink ("see details on Google Calendar")', () => {
@@ -49,16 +45,19 @@ describe('<Event /> component', () => {
     });
 
     test('expanded event should render event description', () => {
-        expect(EventWrapper.find('.description')).toHaveLength(1);
+        expect(EventWrapper.find('.event-details')).toHaveLength(1);
     });
 
     test('expanded event should collapse when button clicked', () => {
-        EventWrapper.find('.btn-details').simulate('click');
-        expect(EventWrapper.state('isExpanded')).toBe(true);
+        EventWrapper.setState({
+            show: true
+        });
+        EventWrapper.find('.btn-toggle').simulate('click');
+        expect(EventWrapper.state('show')).toBe(true);
     });
 
     test('expanded event should be collapsed', () => {
-        expect(EventWrapper.find('.Expanded-Event')).toHaveLength(0);
+        expect(EventWrapper.find('.event-details')).toHaveLength(0);
     });
 
 });
