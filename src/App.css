@@ -198,7 +198,7 @@ input[type="number"] {
     height: 18px;
 }
 
-.btn-text {
+.btn-toggle {
     float: right;
     margin: 11px 11px 0 0;
     color: #000000;
