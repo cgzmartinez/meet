@@ -2,7 +2,7 @@
 
 .App {
     text-align: center;
-    padding: 2% 5%;
+    padding: 5% 5%;
 }
 
 .App * {
@@ -130,9 +130,20 @@ input[type="number"] {
     font-family: sans-serif;
 }
 
+.city-alert {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em;
+}
+
 .Alert {
-    position: fixed;
-    top: 20px;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10em;
 }
 
 .data-vis-wrapper {
